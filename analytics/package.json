@@ -12,7 +12,9 @@
     "prepare:thena": "mustache ../configs/aggregated/bsc_082.json template.yaml > subgraph.yaml; graph build",
     "deploy:thena": "graph deploy thena-bsc-analytcs-082 --node  https://api.0xgraph.xyz/deploy  --ipfs https://api.0xgraph.xyz/ipfs",
     "prepare:mantle": "mustache ../configs/aggregated/mantle_082.json template.yaml > subgraph.yaml; graph build",
-    "deploy:mantle": "graph deploy intentx-mantle-analytcs-082 --node https://subgraph-api.mantle.xyz/deploy --ipfs https://subgraph-api.mantle.xyz/ipfs"
+    "deploy:mantle": "graph deploy intentx-mantle-analytcs-082 --node https://subgraph-api.mantle.xyz/deploy --ipfs https://subgraph-api.mantle.xyz/ipfs",
+    "prepare:polygon": "mustache ../configs/aggregated/polygon_083.json template.yaml > subgraph.yaml; graph build",
+    "deploy:polygon": "graph deploy intentx-polygon-analytcs-083 --node https://api.0xgraph.xyz/deploy --ipfs https://api.0xgraph.xyz/ipfs"
   },
   "dependencies": {
     "@graphprotocol/graph-cli": "0.50.1",

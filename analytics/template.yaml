@@ -27,7 +27,7 @@ dataSources:
         - OpenInterest
       abis:
         - name: symmio
-          file: ./abis/symmio.json
+          file: ../abis/symmio_0.8.3.json
       # blockHandlers:
       #   - handler: handleBlockWithCall
       #     filter:
@@ -95,21 +95,21 @@ dataSources:
           handler: handleSetCollateral
         - event: SetDeallocateCooldown(uint256,uint256)
           handler: handleSetDeallocateCooldown
-        - event: SetFeeCollector(address,address)
+        - event: SetFeeCollector(address,address,address)
           handler: handleSetFeeCollector
         - event: SetForceCancelCloseCooldown(uint256,uint256)
           handler: handleSetForceCancelCloseCooldown
         - event: SetForceCancelCooldown(uint256,uint256)
           handler: handleSetForceCancelCooldown
-        - event: SetForceCloseCooldown(uint256,uint256)
+        - event: SetForceCloseCooldowns(uint256,uint256,uint256,uint256)
           handler: handleSetForceCloseCooldown
-        - event: SetForceCloseGapRatio(uint256,uint256)
+        - event: SetForceCloseGapRatio(uint256,uint256,uint256)
           handler: handleSetForceCloseGapRatio
         - event: SetLiquidationTimeout(uint256,uint256)
           handler: handleSetLiquidationTimeout
         - event: SetLiquidatorShare(uint256,uint256)
           handler: handleSetLiquidatorShare
-        - event: SetMuonConfig(uint256,uint256,uint256)
+        - event: SetMuonConfig(uint256,uint256)
           handler: handleSetMuonConfig
         - event: SetMuonIds(uint256,address,uint256,uint8)
           handler: handleSetMuonIds
@@ -139,9 +139,9 @@ dataSources:
           handler: handleUnpausePartyBActions
         - event: FullyLiquidatedPartyB(address,address)
           handler: handleFullyLiquidatedPartyB
-        - event: LiquidatePartyA(address,address)
+        - event: LiquidatePartyA(address,address,uint256,int256,int256,bytes)
           handler: handleLiquidatePartyA
-        - event: LiquidatePartyB(address,address,address)
+        - event: LiquidatePartyB(address,address,address,uint256,int256)
           handler: handleLiquidatePartyB
         - event: LiquidatePositionsPartyA(address,address,uint256[])
           handler: handleLiquidatePositionsPartyA

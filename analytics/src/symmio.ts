@@ -44,7 +44,7 @@ import {
   SetFeeCollector,
   SetForceCancelCloseCooldown,
   SetForceCancelCooldown,
-  SetForceCloseCooldown,
+  SetForceCloseCooldowns,
   SetForceCloseGapRatio,
   SetLiquidationTimeout,
   SetLiquidatorShare,
@@ -170,7 +170,7 @@ rolesNames.set(
 
 // //////////////////////////////////// CONTROL ////////////////////////////////////////
 export function handleAddSymbol(event: AddSymbol): void {
-  let symbol = new Symbol(event.params.id.toString());
+  let symbol = new Symbol(event.params.symbolId.toString());
   symbol.name = event.params.name;
   symbol.tradingFee = event.params.tradingFee;
   symbol.timestamp = event.block.timestamp;
@@ -198,7 +198,7 @@ export function handleSetSymbolTradingFee(event: SetSymbolTradingFee): void {
 }
 
 export function handleRoleGranted(event: RoleGranted): void {
-  let gr = new GrantedRole(
+  /* let gr = new GrantedRole(
     rolesNames.get(event.params.role.toHexString()) +
       "_" +
       event.params.user.toHexString()
@@ -210,7 +210,7 @@ export function handleRoleGranted(event: RoleGranted): void {
   gr.grantTransaction = event.transaction.hash;
   gr.revokeTransaction = null;
   gr.updateTimestamp = event.block.timestamp;
-  gr.save();
+  gr.save(); */
 }
 
 export function handleRoleRevoked(event: RoleRevoked): void {
@@ -1222,7 +1222,7 @@ export function handleSetForceCancelCooldown(
 ): void {}
 
 export function handleSetForceCloseCooldown(
-  event: SetForceCloseCooldown
+  event: SetForceCloseCooldowns
 ): void {}
 
 export function handleSetForceCloseGapRatio(
