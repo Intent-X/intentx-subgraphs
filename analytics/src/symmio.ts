@@ -688,6 +688,7 @@ export function handleSendQuote(event: SendQuote): void {
     );
   }
   let quote = new QuoteModel(event.params.quoteId.toString());
+  quote.id = event.params.quoteId.toString();
   quote.user = user.id;
   quote.timestamp = event.block.timestamp;
   quote.updateTimestamp = event.block.timestamp;
