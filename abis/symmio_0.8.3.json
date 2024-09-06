@@ -154,25 +154,6 @@
         "type": "uint8"
       }
     ],
-    "name": "AcceptCancelCloseRequest",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "quoteId",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "enum QuoteStatus",
-        "name": "quoteStatus",
-        "type": "uint8"
-      }
-    ],
     "name": "AcceptCancelRequest",
     "type": "event"
   },
@@ -248,68 +229,6 @@
       }
     ],
     "name": "EmergencyClosePosition",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "quoteId",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "address",
-        "name": "partyA",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "address",
-        "name": "partyB",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "filledAmount",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "closedPrice",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "enum QuoteStatus",
-        "name": "quoteStatus",
-        "type": "uint8"
-      }
-    ],
-    "name": "EmergencyClosePosition",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "internalType": "enum QuoteStatus",
-        "name": "quoteStatus",
-        "type": "uint8"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "quoteId",
-        "type": "uint256"
-      }
-    ],
-    "name": "ExpireQuote",
     "type": "event"
   },
   {
@@ -400,49 +319,6 @@
         "internalType": "uint256",
         "name": "closeId",
         "type": "uint256"
-      }
-    ],
-    "name": "FillCloseRequest",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "quoteId",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "address",
-        "name": "partyA",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "address",
-        "name": "partyB",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "filledAmount",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "closedPrice",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "enum QuoteStatus",
-        "name": "quoteStatus",
-        "type": "uint8"
       }
     ],
     "name": "FillCloseRequest",
@@ -4793,25 +4669,6 @@
         "type": "uint8"
       }
     ],
-    "name": "ForceCancelCloseRequest",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "quoteId",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "enum QuoteStatus",
-        "name": "quoteStatus",
-        "type": "uint8"
-      }
-    ],
     "name": "ForceCancelQuote",
     "type": "event"
   },
@@ -4869,49 +4726,6 @@
     "inputs": [
       {
         "indexed": false,
-        "internalType": "uint256",
-        "name": "quoteId",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "address",
-        "name": "partyA",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "address",
-        "name": "partyB",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "filledAmount",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "closedPrice",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "enum QuoteStatus",
-        "name": "quoteStatus",
-        "type": "uint8"
-      }
-    ],
-    "name": "ForceClosePosition",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
         "internalType": "address",
         "name": "partyA",
         "type": "address"
@@ -4939,37 +4753,6 @@
         "internalType": "uint256",
         "name": "closeId",
         "type": "uint256"
-      }
-    ],
-    "name": "RequestToCancelCloseRequest",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "internalType": "address",
-        "name": "partyA",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "address",
-        "name": "partyB",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "quoteId",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "enum QuoteStatus",
-        "name": "quoteStatus",
-        "type": "uint8"
       }
     ],
     "name": "RequestToCancelCloseRequest",
@@ -5062,61 +4845,6 @@
         "internalType": "uint256",
         "name": "closeId",
         "type": "uint256"
-      }
-    ],
-    "name": "RequestToClosePosition",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "internalType": "address",
-        "name": "partyA",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "address",
-        "name": "partyB",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "quoteId",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "closePrice",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "quantityToClose",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "enum OrderType",
-        "name": "orderType",
-        "type": "uint8"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "deadline",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "enum QuoteStatus",
-        "name": "quoteStatus",
-        "type": "uint8"
       }
     ],
     "name": "RequestToClosePosition",
@@ -5747,31 +5475,6 @@
       {
         "indexed": false,
         "internalType": "address",
-        "name": "partyB",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "address",
-        "name": "partyA",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "amount",
-        "type": "uint256"
-      }
-    ],
-    "name": "AllocateForPartyB",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "internalType": "address",
         "name": "user",
         "type": "address"
       },
@@ -5785,25 +5488,6 @@
         "indexed": false,
         "internalType": "uint256",
         "name": "newAllocatedBalance",
-        "type": "uint256"
-      }
-    ],
-    "name": "AllocatePartyA",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "internalType": "address",
-        "name": "user",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "amount",
         "type": "uint256"
       }
     ],
@@ -5847,31 +5531,6 @@
       {
         "indexed": false,
         "internalType": "address",
-        "name": "partyB",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "address",
-        "name": "partyA",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "amount",
-        "type": "uint256"
-      }
-    ],
-    "name": "DeallocateForPartyB",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "internalType": "address",
         "name": "user",
         "type": "address"
       },
@@ -5885,25 +5544,6 @@
         "indexed": false,
         "internalType": "uint256",
         "name": "newAllocatedBalance",
-        "type": "uint256"
-      }
-    ],
-    "name": "DeallocatePartyA",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "internalType": "address",
-        "name": "user",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "amount",
         "type": "uint256"
       }
     ],
@@ -6765,43 +6405,6 @@
       },
       {
         "indexed": false,
-        "internalType": "uint256",
-        "name": "allocatedBalance",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "int256",
-        "name": "upnl",
-        "type": "int256"
-      },
-      {
-        "indexed": false,
-        "internalType": "int256",
-        "name": "totalUnrealizedLoss",
-        "type": "int256"
-      }
-    ],
-    "name": "LiquidatePartyA",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "internalType": "address",
-        "name": "liquidator",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "address",
-        "name": "partyA",
-        "type": "address"
-      },
-      {
-        "indexed": false,
         "internalType": "uint256[]",
         "name": "quoteIds",
         "type": "uint256[]"
@@ -6817,25 +6420,6 @@
         "internalType": "bytes",
         "name": "liquidationId",
         "type": "bytes"
-      }
-    ],
-    "name": "LiquidatePendingPositionsPartyA",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "internalType": "address",
-        "name": "liquidator",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "address",
-        "name": "partyA",
-        "type": "address"
       }
     ],
     "name": "LiquidatePendingPositionsPartyA",
@@ -6896,31 +6480,6 @@
       {
         "indexed": false,
         "internalType": "address",
-        "name": "partyA",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256[]",
-        "name": "quoteIds",
-        "type": "uint256[]"
-      }
-    ],
-    "name": "LiquidatePositionsPartyA",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "internalType": "address",
-        "name": "liquidator",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "address",
         "name": "partyB",
         "type": "address"
       },
@@ -6946,37 +6505,6 @@
         "indexed": false,
         "internalType": "uint256[]",
         "name": "closeIds",
-        "type": "uint256[]"
-      }
-    ],
-    "name": "LiquidatePositionsPartyB",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "internalType": "address",
-        "name": "liquidator",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "address",
-        "name": "partyB",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "address",
-        "name": "partyA",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256[]",
-        "name": "quoteIds",
         "type": "uint256[]"
       }
     ],
@@ -7126,37 +6654,6 @@
       {
         "indexed": false,
         "internalType": "address",
-        "name": "liquidator",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "address",
-        "name": "partyA",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256[]",
-        "name": "symbolIds",
-        "type": "uint256[]"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256[]",
-        "name": "prices",
-        "type": "uint256[]"
-      }
-    ],
-    "name": "SetSymbolsPrices",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "internalType": "address",
         "name": "partyA",
         "type": "address"
       },
@@ -7177,31 +6674,6 @@
         "internalType": "bytes",
         "name": "liquidationId",
         "type": "bytes"
-      }
-    ],
-    "name": "SettlePartyALiquidation",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "internalType": "address",
-        "name": "partyA",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "address[]",
-        "name": "partyBs",
-        "type": "address[]"
-      },
-      {
-        "indexed": false,
-        "internalType": "int256[]",
-        "name": "amounts",
-        "type": "int256[]"
       }
     ],
     "name": "SettlePartyALiquidation",

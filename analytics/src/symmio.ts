@@ -15,7 +15,7 @@ import {
   DiamondCut,
   DisputeForLiquidation,
   EmergencyClosePosition,
-  ExpireQuote,
+  ExpireQuoteOpen,
   FillCloseRequest,
   ForceCancelCloseRequest,
   ForceCancelQuote,
@@ -769,7 +769,16 @@ export function handleSendQuote(event: SendQuote): void {
   uth.save();
 }
 
-export function handleExpireQuote(event: ExpireQuote): void {
+export function handleExpireQuoteOpen(event: ExpireQuoteOpen): void {
+  let quote = QuoteModel.load(event.params.quoteId.toString())!;
+  quote.quoteStatus = event.params.quoteStatus;
+  quote.updateTimestamp = event.block.timestamp;
+  quote.expiredAt = event.block.timestamp;
+  quote.expiredTransaction = event.transaction.hash;
+  quote.save();
+}
+
+export function handleExpireQuoteClose(event: ExpireQuoteOpen): void {
   let quote = QuoteModel.load(event.params.quoteId.toString())!;
   quote.quoteStatus = event.params.quoteStatus;
   quote.updateTimestamp = event.block.timestamp;
@@ -946,8 +955,14 @@ export function handleOpenPosition(event: OpenPosition): void {
   history.updateTimestamp = event.block.timestamp;
   history.save();
 
-  let quote = QuoteModel.load(event.params.quoteId.toString())!;
-  const chainQuote = getQuote(event.address, BigInt.fromString(quote.id))!;
+  let quote = QuoteModel.load(event.params.quoteId.toString());
+  if (quote == null) {
+    return;
+  }
+  const chainQuote = getQuote(event.address, BigInt.fromString(quote.id));
+  if (chainQuote == null) {
+    return;
+  }
   quote.openPrice = event.params.openedPrice;
   quote.openPriceFundingRate = event.params.openedPrice;
   quote.paidFundingRate = BigInt.fromString("0");
