@@ -27,7 +27,7 @@ dataSources:
         - OpenInterest
       abis:
         - name: symmio
-          file: ./abis/symmio.json
+          file: ./abis/symmio_0.8.1.json
       # blockHandlers:
       #   - handler: handleBlockWithCall
       #     filter:
