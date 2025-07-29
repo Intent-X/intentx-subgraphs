@@ -761,7 +761,7 @@ export function handleRequestToClosePosition(
   let account = AccountModel.load(event.params.partyA.toHexString())!;
   updateActivityTimestamps(account, event.block.timestamp);
 
-  let quote = QuoteModel.load(event.params.quoteId.toString())!;
+  let quote = QuoteModel.load(event.params.quoteId.toString());
   if (quote) {
     quote.quoteStatus = QuoteStatus.CLOSE_PENDING;
     quote.updateTimestamp = event.block.timestamp;
