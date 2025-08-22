@@ -264,7 +264,12 @@ function handleClose(_event: ethereum.Event, name: string): void {
 
   let history = TradeHistoryModel.load(
     event.params.partyA.toHexString() + "-" + event.params.quoteId.toString()
-  )!;
+  );
+  if (history == null) {
+    history = new TradeHistoryModel(
+      event.params.partyA.toHexString() + "-" + event.params.quoteId.toString()
+    );
+  }
   const additionalVolume = event.params.filledAmount
     .times(event.params.closedPrice)
     .div(BigInt.fromString("10").pow(18));
