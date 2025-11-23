@@ -868,6 +868,9 @@ export function handleUnlockQuote(event: UnlockQuote): void {
 }
 
 export function handleOpenPosition(event: OpenPosition): void {
+  if (!event.params.quoteId) {
+    return;
+  }
   let account = AccountModel.load(event.params.partyA.toHexString())!;
   account.positionsCount = account.positionsCount.plus(BigInt.fromString("1"));
   account.updateTimestamp = event.block.timestamp;
@@ -1248,30 +1251,37 @@ function handleLiquidatePosition(_event: ethereum.Event, qId: BigInt): void {
   let history = TradeHistoryModel.load(
     event.params.partyA.toHexString() + "-" + qId.toString()
   )!;
-  const quote = QuoteModel.load(qId.toString())!;
-  quote.quoteStatus = QuoteStatus.LIQUIDATED;
-  quote.updateTimestamp = event.block.timestamp;
-  quote.liquidatedSide = 1;
-  quote.liquidatedAt = event.block.timestamp;
-  quote.liquidatedTransaction = event.transaction.hash;
+  const quote = QuoteModel.load(qId.toString());
 
-  // Liquidation details
-  let liquidationAmount = quote.quantity!.minus(quote.closedAmount!);
-  quote.liquidationAmount = liquidationAmount;
+  if (quote == null) return;
 
-  let partyASymbolPriceEntity = PartyASymbolPrice.load(
-    event.params.partyA
-      .toHexString()
-      .concat("-")
-      .concat(quote.symbolId!.toHex())
-  );
-  if (partyASymbolPriceEntity) {
-    quote.liquidationPrice = partyASymbolPriceEntity.requestedOpenPrice;
-  } else {
-    // log.debug(`Error in get entity liquidate requestedOpenPrice`, []);
+  if (quote) {
+    quote.quoteStatus = QuoteStatus.LIQUIDATED;
+    quote.updateTimestamp = event.block.timestamp;
+    quote.liquidatedSide = 1;
+    quote.liquidatedAt = event.block.timestamp;
+    quote.liquidatedTransaction = event.transaction.hash;
+
+    // Liquidation details
+    let liquidationAmount = quote.quantity.minus(
+      quote.closedAmount ?? BigInt.fromString("0")
+    );
+    quote.liquidationAmount = liquidationAmount;
+
+    let partyASymbolPriceEntity = PartyASymbolPrice.load(
+      event.params.partyA
+        .toHexString()
+        .concat("-")
+        .concat(quote.symbolId.toHex())
+    );
+    if (partyASymbolPriceEntity) {
+      quote.liquidationPrice = partyASymbolPriceEntity.requestedOpenPrice;
+    } else {
+      // log.debug(`Error in get entity liquidate requestedOpenPrice`, []);
+    }
+
+    quote.save();
   }
-
-  quote.save();
 
   const chainQuote = getQuote(event.address, qId);
   if (chainQuote == null) return;
@@ -1291,7 +1301,8 @@ function handleLiquidatePosition(_event: ethereum.Event, qId: BigInt): void {
 
   quote.avgClosedPrice = chainQuote.avgClosedPrice;
   quote.save();
-  let account = AccountModel.load(quote.account)!;
+  let account = AccountModel.load(quote.account);
+  if (account == null) return;
 
   const dh = getDailyHistoryForTimestamp(
     event.block.timestamp,
@@ -1360,7 +1371,7 @@ function handleLiquidatePosition(_event: ethereum.Event, qId: BigInt): void {
   updateDailyOpenInterest(
     quote.symbolId,
     event.block.timestamp,
-    unDecimal(liquidAmount.times(quote.openPrice!)),
+    unDecimal(liquidAmount.times(quote.openPrice ?? BigInt.fromString("0"))),
     false,
     account.accountSource
   );
