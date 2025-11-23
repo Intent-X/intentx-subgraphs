@@ -1263,9 +1263,8 @@ function handleLiquidatePosition(_event: ethereum.Event, qId: BigInt): void {
     quote.liquidatedTransaction = event.transaction.hash;
 
     // Liquidation details
-    let liquidationAmount = quote.quantity.minus(
-      quote.closedAmount ?? BigInt.fromString("0")
-    );
+    if (!quote.closedAmount) return;
+    let liquidationAmount = quote.quantity.minus(quote.closedAmount!);
     quote.liquidationAmount = liquidationAmount;
 
     let partyASymbolPriceEntity = PartyASymbolPrice.load(
@@ -1368,13 +1367,15 @@ function handleLiquidatePosition(_event: ethereum.Event, qId: BigInt): void {
   sdv.updateTimestamp = event.block.timestamp;
   sdv.save();
 
-  updateDailyOpenInterest(
-    quote.symbolId,
-    event.block.timestamp,
-    unDecimal(liquidAmount.times(quote.openPrice ?? BigInt.fromString("0"))),
-    false,
-    account.accountSource
-  );
+  if (quote.openPrice) {
+    updateDailyOpenInterest(
+      quote.symbolId,
+      event.block.timestamp,
+      unDecimal(liquidAmount.times(quote.openPrice!)),
+      false,
+      account.accountSource
+    );
+  }
 
   // Updating the account allocated balances
   updatePartyACurrentBalances(event.address, event.params.partyA);
