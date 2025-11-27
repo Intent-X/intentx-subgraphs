@@ -1250,10 +1250,25 @@ function handleLiquidatePosition(_event: ethereum.Event, qId: BigInt): void {
   const event = changetype<LiquidatePositionsPartyA>(_event);
   let history = TradeHistoryModel.load(
     event.params.partyA.toHexString() + "-" + qId.toString()
-  )!;
+  );
   const quote = QuoteModel.load(qId.toString());
 
   if (quote == null) return;
+
+  // Create history if it doesn't exist (fallback for liquidation scenarios)
+  if (history == null) {
+    history = new TradeHistoryModel(
+      event.params.partyA.toHexString() + "-" + qId.toString()
+    );
+    history.account = event.params.partyA.toHexString();
+    history.timestamp = event.block.timestamp;
+    history.blockNumber = event.block.number;
+    history.transaction = event.transaction.hash;
+    history.volume = BigInt.fromString("0");
+    history.quoteStatus = QuoteStatus.LIQUIDATED;
+    history.quote = qId;
+    history.updateTimestamp = event.block.timestamp;
+  }
 
   if (quote) {
     quote.quoteStatus = QuoteStatus.LIQUIDATED;
@@ -1264,7 +1279,7 @@ function handleLiquidatePosition(_event: ethereum.Event, qId: BigInt): void {
 
     // Liquidation details
     if (!quote.closedAmount) return;
-    let liquidationAmount = quote.quantity.minus(quote.closedAmount!);
+    let liquidationAmount = quote.quantity.minus(quote.closedAmount);
     quote.liquidationAmount = liquidationAmount;
 
     let partyASymbolPriceEntity = PartyASymbolPrice.load(
@@ -1439,7 +1454,10 @@ export function handleChargeFundingRate(event: ChargeFundingRate): void {
     }
 
     const solver = quote.solver;
-    const user = User.load(quote.user)!;
+    const user = User.load(quote.user);
+    if (!user) {
+      continue; // Skip if user doesn't exist
+    }
     const accountAddress = quote.account;
     const accountId = accountAddress;
     const symbol = quote.symbol;
